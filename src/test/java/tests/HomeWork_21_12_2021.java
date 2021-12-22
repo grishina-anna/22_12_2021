@@ -40,7 +40,6 @@ public class HomeWork_21_12_2021 {
         $("#genterWrapper").$(byText("Female")).click(); //самый нормальный вариант
 
         $("#userNumber").setValue("8912345678");
-
         $("#dateOfBirthInput").click();
         //не для всех селектов подходит данный метод: "." потому что react-datepicker__month-select это класс
         $(".react-datepicker__month-select").click();
