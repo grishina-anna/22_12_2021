@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -43,8 +45,8 @@ public class HomeWork_21_12_2021 {
         $("#dateOfBirthInput").click();
         //не для всех селектов подходит данный метод: "." потому что react-datepicker__month-select это класс
         $(".react-datepicker__month-select").click();
-        $(".react-datepicker__month-select").selectOption("March");
-        $(".react-datepicker__year-select").selectOption("1988");
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").selectOption("1990");
         // если число встречается несколько раз в поле, то:
         //1 способ (указать, какого локатора быть не должно)
       //  $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
@@ -65,10 +67,10 @@ public class HomeWork_21_12_2021 {
 //        Поэтому необходимо добавить xpath
 //        $x("//*[contains(aria-label, \"Choose Wednesday, July 30th, 2008\"]").click();
 //
-//        $(byText("29")).click();
+        $(byText("29")).click();
 
 
-        $("[aria-label$='March 29th, 1988']").click();
+//        $("[aria-label$='July, 29th, 1990']").click();
 
         //$ внутри кавычек означает, что значение параметра должно заканчиваться на "март"
         // $$ означает коллекцию элементов (массив)
@@ -76,12 +78,38 @@ public class HomeWork_21_12_2021 {
 
         $("#subjectsInput").setValue("Math").pressEnter();
 
-        $(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("simple.txt");
-       $("#currentAddress").setValue("Krasnaya, 1-1-11");
-        $("#state").setValue("NCR").pressEnter();
-        $("#city").setValue("Delhi").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+
+//сначала нужно в папке test добавить директорию "resources", в ней папку "imd" и там файл "1.png"
+
+        // в селениде есть 2 метода загрузки картинки:
+        //1. нажать правок кнопкой на картинку, выбрать Copy Path и дальше в самом низу путь
+//        $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
+
+        //ещё вариант- тоже самое, но путь выпонится выше
+//        File someFile = new File("src/test/resources/img/1.png");
+//        $("#uploadPicture").uploadFile(someFile);
+
+        //2 способ: указывается пусть, относительно папки test - он лучше!
+        $("#uploadPicture").uploadFromClasspath("img/1.png");
+
+        $("#currentAddress").setValue("Krasnaya, 1-1-11");
+
+        // не смог нажать на эти селекты, добавили скролл
+
+        $("#state").scrollTo().click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+
+
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Noida")).click();
+
         $("#submit").click();
+        $("#submit").click();
+
+
+
+        $("#close").click();
     }
     }
 
