@@ -1,18 +1,36 @@
 plugins {
-    id 'java-library'
+    id 'java'
 }
 
+// хранилище всех библиотек java - mavenCentral. не путать с Maven
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation (
-            "com.codeborne:selenide:5.25.1",
-            "org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+//язык Java версии 11, новее не надо, могут быть баги
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+//для распознания всех алфавитов на Windows, но иногда не помогает
+compileTestJava {
+    options.encoding = 'UTF-8'
 }
 
+dependencies {
+    // Selenide
+    testImplementation("com.codeborne:selenide:5.25.1") //новее пока не надо, 4 и 5 версии селенида базируются на версии сенениума 3 (стабильная)
+    testRuntimeOnly("org.slf4j:slf4j-simple:1.7.32") //включает расширенный логинг (выдаст нормальное сообщение об ошибке, со скриншотом)
+
+
+    // JUnit 5
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2") //для использования аннотации
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2") //для запуска junit
+
+}
+
+//для тестов используется 4 версия junit. поэтому нужна строка ниже. Когда появится 5 версия, эта строка будет не нужна
 test {
-    useJUnitPlatform()
+    useJUnitPlatform{}
 }

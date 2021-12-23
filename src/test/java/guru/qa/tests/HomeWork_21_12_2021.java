@@ -1,11 +1,11 @@
-package tests;
+package guru.qa.tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -86,7 +86,7 @@ public class HomeWork_21_12_2021 {
         //1. нажать правок кнопкой на картинку, выбрать Copy Path и дальше в самом низу путь
 //        $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
 
-        //ещё вариант- тоже самое, но путь выпонится выше
+        //ещё вариант- тоже самое, но путь выполнится выше
 //        File someFile = new File("src/test/resources/img/1.png");
 //        $("#uploadPicture").uploadFile(someFile);
 
@@ -107,9 +107,14 @@ public class HomeWork_21_12_2021 {
         $("#submit").click();
         $("#submit").click();
 
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $("#Student Name").shouldHave(Condition.attribute("Anna Grishina"));
+        $("#Student Email").shouldHave(Condition.attribute("aaa@aa.aa"));
 
 
-        $("#close").click();
+        $("#currentAddress", 1).shouldHave(text("Krasnaya, 1-1-11"));
+
+
     }
     }
 
