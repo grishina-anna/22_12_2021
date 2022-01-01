@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 // this is not a full list, just the most common
-public class Snippets {
+class Snippets {
 
     void browser_command_examples() {
         // -Dselenide.baseUrl=http://github.com - основная часть хоста, это можно сделать динамическим и менять при запуске теста
