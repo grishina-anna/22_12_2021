@@ -22,7 +22,7 @@ public class SearchSelenideRepo {
         //вводим в поле поиска "selenide" и нажать Enter
         $("[data-test-selector=nav-search-input]").setValue("selenide").pressEnter();
         //заходим в первый результат
-        //$$ идем набор элементов "ul.repo-list". указывается ещё li class, которые входят в этот список
+        //$$ ищем набор элементов "ul.repo-list". указывается ещё li class, которые входят в этот список
         //на списке нельзя произвести действие, его можно отфильтровать
         //без "а" не сработает, потому что селенид тыкает в центр поля
         $$("ul.repo-list li").first().$("a").click();
