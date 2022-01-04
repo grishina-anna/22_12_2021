@@ -11,17 +11,16 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class FinishHoweWork {
 
-        @BeforeAll
-        static void setUp() {
+    @BeforeAll
+    static void setUp() {
 
 //если надо несколько раз открывать один и тот же сайт, можно добавить то, что ниже:
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.startMaximized = true;
-        }
+    }
 
-        @Test
-
-        void fillFormTest() {
+    @Test
+    void fillFormTest() {
         open("/automation-practice-form");
 
         $("#firstName").setValue("Anna");
@@ -32,7 +31,7 @@ public class FinishHoweWork {
 
         $("#userNumber").setValue("8912345678");
         $("#dateOfBirthInput").click();
-         $(".react-datepicker__month-select").click();
+        $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("1990");
 
@@ -42,7 +41,7 @@ public class FinishHoweWork {
 
         $("#hobbiesWrapper").$(byText("Sports")).click();
 
-       $("#uploadPicture").uploadFromClasspath("img/1.png");
+        $("#uploadPicture").uploadFromClasspath("img/1.png");
 
         $("#currentAddress").setValue("Krasnaya, 1-1-11");
 
@@ -57,10 +56,11 @@ public class FinishHoweWork {
 
         $("#submit").click();
 
+
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").$(byText("Student Name")).parent()
-                    .shouldHave(text("Anna Grishina"));
-            sleep(5000);
-        }
+                .shouldHave(text("Anna Grishina"));
+        sleep(5000);
+    }
 }
 
